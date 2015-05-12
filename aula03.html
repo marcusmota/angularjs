@@ -70,7 +70,7 @@
 		{{contato}}
 		<input class="form-control" type="text" ng-model="contato.nome"/>
 		<input class="form-control" type="text" ng-model="contato.telefone"/>
-		<select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras">
+		<select class="form-control" ng-model="contato.operadora" ng-options="operadora.codigo as operadora.nome for operadora in operadoras">
 			<option value="">Selecione uma operadora</option>
 		</select>
 		<button ng-click="adicionarContato(contato)" class="btn btn-primary btn-block" 
