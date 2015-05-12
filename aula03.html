@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="listaTelefonica">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<script src="js/angular.js"></script>
+<style>
+	.jumbotron{
+		width:400px;
+		text-align:center;
+		margin-top:20px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	
+	.table{
+		margin-top: 20px;
+	}
+	
+	.form-control{
+		margin-bottom: 5px;
+	}
+</style>
+<script>
+
+	angular.module("listaTelefonica", []);
+	angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope){
+		$scope.app="Lista Telefonica";
+		$scope.contatos = [
+		                  {nome: "Pedro", telefone: "9999999"},
+		                  {nome: "Maria", telefone: "9991111"},
+		                  {nome: "Lucas", telefone: "9955555"}
+		                  ];
+		
+		$scope.operadoras = [
+		                     {nome: "Oi", codigo: 14},
+		                     {nome: "Tim", codigo: 15},
+		                     {nome: "Vivo", codigo: 41},
+		                     
+		                     ];
+		
+		$scope.adicionarContato = function(contato){
+			$scope.contatos.push(contato);	
+			delete $scope.contato;
+		};
+		
+	});
+	
+	
+
+</script>
+
+</head>
+<body ng-controller="listaTelefonicaCtrl">
+	<div class="jumbotron">
+		<h3>{{app}}</h3>
+		<table class="table table-striped">
+			<tr>
+				<th>nome</th>
+				<th>telefone</th>
+				<th>operadora</th>
+			</tr>
+			<tr ng-repeat="contato in contatos">
+				<td>{{contato.nome}}</td>
+				<td>{{contato.telefone}}</td>
+				<td>{{contato.operadora.nome}}</td>
+			</tr>
+		</table>
+		{{contato}}
+		<input class="form-control" type="text" ng-model="contato.nome"/>
+		<input class="form-control" type="text" ng-model="contato.telefone"/>
+		<select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras">
+			<option value="">Selecione uma operadora</option>
+		</select>
+		<button ng-click="adicionarContato(contato)" class="btn btn-primary btn-block" 
+		ng-disabled="!contato.nome && !contato.telefone">Adicionar Contato</button>
+</div>
+</body>
+</html>
